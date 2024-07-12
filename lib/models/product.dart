@@ -1,7 +1,7 @@
 import 'package:mongo_dart/mongo_dart.dart';
 
 class Product {
-  final String id;
+  final ObjectId id;
   final String name;
   final double price;
   int _amount;
@@ -15,7 +15,7 @@ class Product {
   }
 
   factory Product.fromMongo(Map<String, dynamic> json) => Product(
-        id: (json["_id"] as ObjectId).oid,
+        id: json["_id"],
         name: json["name"],
         price: json["price"],
         amount: json["amount"],
