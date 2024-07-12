@@ -6,6 +6,7 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
 import '../config/set_up.dart';
+import '../errors/exceptions.dart';
 import '../utils/utils.dart';
 
 part "create_product.dart";

@@ -1,5 +1,6 @@
 part of "routes.dart";
 
+// Handler per eliminare un prodotto dato il suo id.
 Future<Response> deleteProduct(Request req) async {
   final id = req.params["_id"];
 
