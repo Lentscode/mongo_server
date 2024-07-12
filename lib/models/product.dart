@@ -6,7 +6,12 @@ class Product {
   final double price;
   int _amount;
 
-  Product({required this.id, required this.name, required this.price, required int amount}) : _amount = amount;
+  Product({
+    required this.id,
+    required this.name,
+    required this.price,
+    required int amount,
+  }) : _amount = amount;
 
   int get amount => _amount;
 
