@@ -19,11 +19,11 @@ class Product {
     _amount -= amount;
   }
 
-  factory Product.fromMongo(Map<String, dynamic> json) => Product(
-        id: json["_id"],
-        name: json["name"],
-        price: json["price"],
-        amount: json["amount"],
+  factory Product.fromMongo(Map<String, dynamic> doc) => Product(
+        id: doc["_id"],
+        name: doc["name"],
+        price: doc["price"],
+        amount: doc["amount"],
       );
 
   Map<String, dynamic> toJson() => {
