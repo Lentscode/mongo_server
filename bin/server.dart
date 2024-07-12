@@ -8,10 +8,10 @@ import 'package:shelf_router/shelf_router.dart';
 
 // Router principale.
 final _router = Router()
-  ..get('/products', getProducts)
-  ..post("/products", createProduct)
-  ..patch("/products", purchaseProduct)
-  ..delete("/products/<_id>", deleteProduct);
+  ..get('/getProducts', getProducts)
+  ..post("/createProduct", createProduct)
+  ..post("/purchaseProduct", purchaseProduct)
+  ..delete("/deleteProduct", deleteProduct);
 
 void main(List<String> args) async {
   // Chiamiamo la funzione setUp() per registrare tutti i servizi con GetIt.
