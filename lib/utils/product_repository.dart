@@ -16,21 +16,20 @@ class ProductRepository {
     return Product.fromMongo(finalData);
   }
 
-  Future<List<Product>> getProducts(double? underPrice) async {
+  Future<List<Product>> getProducts([double? underPrice]) async {
     final selector = underPrice != null ? where.lte("price", underPrice) : null;
 
     return await _productCollection.find(selector).map((data) => Product.fromMongo(data)).toList();
   }
 
   Future<Product> updateAmountOfProduct(String id, int amountPurchased) async {
-    final doc = await _productCollection.findOne(where.eq("_id", ObjectId.parse(id)));
+    final doc = await _productCollection.findOne(where.id(ObjectId.parse(id)));
 
     if (doc == null) {
-      throw 9;
+      throw ProductNotFoundException();
     }
 
-    final product = Product.fromMongo(doc);
-    product.updateAmount(amountPurchased);
+    final product = Product.fromMongo(doc)..updateAmount(amountPurchased);
 
     await _productCollection.updateOne(
       where.eq("_id", ObjectId.parse(id)),
@@ -41,6 +40,6 @@ class ProductRepository {
   }
 
   Future<void> deleteProduct(String id) async {
-    await _productCollection.deleteOne(where.eq("_id", ObjectId.parse(id)));
+    await _productCollection.deleteOne(where.id(ObjectId.parse(id)));
   }
 }

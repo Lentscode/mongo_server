@@ -1,7 +1,8 @@
 import 'package:dotenv/dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:mongo_server/utils/utils.dart';
+
+import '../utils/utils.dart';
 
 final getIt = GetIt.instance;
 

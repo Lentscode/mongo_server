@@ -1,4 +1,4 @@
-import 'package:mongo_dart/mongo_dart.dart';
+part of "models.dart";
 
 class Product {
   final ObjectId id;
