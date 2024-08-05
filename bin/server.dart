@@ -1,5 +1,6 @@
 import "dart:io";
 
+import "package:args/args.dart";
 import "package:mongo_server/config/set_up.dart";
 import "package:mongo_server/routes/routes.dart";
 import "package:shelf/shelf.dart";
@@ -14,8 +15,16 @@ final _router = Router()
   ..delete("/deleteProduct", deleteProduct);
 
 void main(List<String> args) async {
-  // Chiamiamo la funzione setUp() per registrare tutti i servizi con GetIt.
-  await setUp();
+  // Configurazione del parser per gli argomenti della riga di comando.
+  final parser = ArgParser()..addFlag("test", negatable: false, help: "Indicates if it is a test run");
+
+  final argResults = parser.parse(args);
+
+  // Verifica se la flag 'test' è stata passata.
+  final isTest = argResults["test"] as bool;
+
+  // Chiamata alla funzione di configurazione con il valore della flag.
+  await setUp(isTest);
 
   final ip = InternetAddress.anyIPv4;
 
