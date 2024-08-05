@@ -22,6 +22,9 @@ class Product {
 
   // Funzione che aggiorna la quantità rimanente.
   void updateAmount(int amountPurchased) {
+    if (_amount - amountPurchased < 0) {
+      throw InsufficientAmountException(id, amountPurchased, _amount);
+    }
     _amount -= amountPurchased;
   }
 
