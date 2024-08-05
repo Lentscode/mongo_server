@@ -8,7 +8,7 @@ Future<Response> deleteProduct(Request req) async {
     return Response.badRequest(body: "Product id not given");
   }
 
-  await getIt.get<ProductRepository>().deleteProduct(id);
+  await getIt.get<ProductRepository>().deleteProduct(ObjectId.parse(id));
 
   return Response.ok("Deleted product with id: $id");
 }
