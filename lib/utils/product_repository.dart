@@ -1,7 +1,7 @@
 part of "utils.dart";
 
 // Classe ausiliaria che esegue operazioni CRUD sulla collezione
-// "products". 
+// "products".
 class ProductRepository {
   const ProductRepository(this._productCollection);
 
@@ -30,8 +30,8 @@ class ProductRepository {
   }
 
   // Metodo per aggiornare la quantità disponibile di un prodotto.
-  Future<Product> updateAmountOfProduct(String id, int amountPurchased) async {
-    final doc = await _productCollection.findOne(where.id(ObjectId.parse(id)));
+  Future<Product> updateAmountOfProduct(ObjectId id, int amountPurchased) async {
+    final doc = await _productCollection.findOne(where.id(id));
 
     // Se il documento non viene trovato, viene lanciata un'eccezione.
     if (doc == null) {
@@ -41,7 +41,7 @@ class ProductRepository {
     final product = Product.fromMongo(doc)..updateAmount(amountPurchased);
 
     await _productCollection.updateOne(
-      where.eq("_id", ObjectId.parse(id)),
+      where.eq("_id", id),
       modify.set("amount", product.amount),
     );
 
@@ -49,7 +49,5 @@ class ProductRepository {
   }
 
   // Metodo per eliminare un prodotto.
-  Future<void> deleteProduct(String id) async {
-    await _productCollection.deleteOne(where.id(ObjectId.parse(id)));
-  }
+  Future<void> deleteProduct(ObjectId id) => _productCollection.deleteOne(where.id(id));
 }
